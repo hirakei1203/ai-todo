@@ -6,6 +6,7 @@
     <title>AI ToDo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -45,13 +46,38 @@
         .list-group-item:last-child {
             border-bottom: none;
         }
-        .btn-primary {
-            background-color: #2e75cc;
-            border-color: #2e75cc;
+        /* Overriding Bootstrap button styles with Notion-like styles */
+        .notion-btn {
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 12px;
+            transition: background 0.1s ease-in;
+            border: 1px solid transparent;
         }
-        .btn-primary:hover {
+        .notion-btn-primary {
+            background-color: #2e75cc;
+            color: white;
+        }
+        .notion-btn-primary:hover {
             background-color: #1f66bd;
-            border-color: #1f66bd;
+            color: white;
+        }
+        .notion-btn-success {
+            background-color: #0f9d58;
+            color: white;
+        }
+        .notion-btn-success:hover {
+            background-color: #0b8043;
+            color: white;
+        }
+        .notion-btn-danger {
+            background-color: #db4437;
+            color: white;
+        }
+        .notion-btn-danger:hover {
+            background-color: #c53929;
+            color: white;
         }
         h1, h2 {
             font-weight: 600;

@@ -23,8 +23,8 @@
                                 <small class="text-muted">Due date: {{ $task->due_date }}</small>
                             </div>
                             <div>
-                                <button class="btn btn-sm btn-success">Complete</button>
-                                <button class="btn btn-sm btn-danger ms-2">Delete</button>
+                                <button class="notion-btn notion-btn-success">Complete</button>
+                                <button class="notion-btn notion-btn-danger ms-2">Delete</button>
                             </div>
                         </li>
                     @endforeach
@@ -49,7 +49,7 @@
                         <input type="text" name="ai_input" class="form-control" 
                                placeholder="Add 'Meeting' tomorrow at 9am">
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Submit Command</button>
+                    <button type="submit" class="notion-btn notion-btn-primary w-100">Submit Command</button>
                 </form>
             </div>
         </div>

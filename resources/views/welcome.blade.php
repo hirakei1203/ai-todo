@@ -1,58 +1,53 @@
-<!-- resources/views/welcome.blade.php -->
 @extends('layouts.app')
 
 @section('content')
 <div class="row">
-    <div class="col-md-8 col-lg-7 mx-auto">
-        <div class="d-flex align-items-center mb-4">
-            <h1 class="mb-0">AI ToDo App</h1>
-            <span class="ms-2 fs-3">📝</span>
-        </div>
-
-        <!-- Task List -->
+    <div class="col-lg-8 mx-auto">
         <div class="card mb-4">
-            <div class="card-header bg-white py-3">
-                <h2 class="h5 mb-0">Today's Tasks</h2>
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h2 class="mb-0">タスク一覧</h2>
             </div>
-            <ul class="list-group list-group-flush">
-                @if(count($tasks) > 0)
-                    @foreach($tasks as $task)
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <div>
-                                <strong>{{ $task->title }}</strong><br>
-                                <small class="text-muted">Due date: {{ $task->due_date }}</small>
-                            </div>
-                            <div>
-                                <button class="notion-btn notion-btn-success">Complete</button>
-                                <button class="notion-btn notion-btn-danger ms-2">Delete</button>
-                            </div>
-                        </li>
-                    @endforeach
-                @else
-                    <li class="list-group-item text-center py-4">
-                        <p class="text-muted mb-0">No tasks yet. Try adding one below!</p>
-                    </li>
+            <div class="card-body">
+                @if(session('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
                 @endif
-            </ul>
+                
+                @if(count($tasks) > 0)
+                    <ul class="list-group">
+                        @foreach($tasks as $task)
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                {{ $task['name'] }}
+                                <div>
+                                    <button class="notion-btn notion-btn-success btn-sm me-2">完了</button>
+                                    <button class="notion-btn notion-btn-danger btn-sm">削除</button>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                @else
+                    <p class="text-center my-4">タスクがありません。AIコマンドを使って追加してみましょう。</p>
+                @endif
+            </div>
         </div>
 
-        <!-- Instruction Input -->
-        <div class="card">
-            <div class="card-header bg-white py-3">
-                <h2 class="h5 mb-0">Command AI Assistant</h2>
+        <!-- AIコマンドフォーム -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h3 class="mb-0">AIにコマンドを送信</h3>
             </div>
             <div class="card-body">
                 <form action="{{ route('ai.command') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label for="ai_input" class="form-label">Type your command:</label>
-                        <input type="text" name="ai_input" class="form-control" 
-                               placeholder="Add 'Meeting' tomorrow at 9am">
+                        <label for="ai_input" class="form-label">あなたの指示</label>
+                        <textarea class="form-control" id="ai_input" name="ai_input" rows="3" placeholder="例：今週の水曜日までに報告書を書くタスクを追加して"></textarea>
                     </div>
-                    <button type="submit" class="notion-btn notion-btn-primary w-100">Submit Command</button>
+                    <button type="submit" class="notion-btn notion-btn-primary">送信</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-@endsection
+@endsection 

@@ -8,7 +8,12 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $tasks = []; // 仮データ or DynamoDBから取得
+        // サンプルデータ（後でDynamoDBから取得するように変更）
+        $tasks = [
+            ['id' => 1, 'name' => '買い物リストを作成する', 'completed' => false],
+            ['id' => 2, 'name' => '週報を提出する', 'completed' => false],
+            ['id' => 3, 'name' => '17時に会議の予定', 'completed' => false],
+        ];
         return view('welcome', compact('tasks'));
     }
 
@@ -16,6 +21,6 @@ class TaskController extends Controller
     {
         $command = $request->input('ai_input');
         // OpenAIに投げて処理（後で作る）
-        return back()->with('message', 'Command sent to AI!');
+        return back()->with('message', 'AIにコマンドを送信しました！');
     }
 }

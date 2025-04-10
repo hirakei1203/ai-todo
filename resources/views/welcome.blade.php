@@ -9,7 +9,7 @@
             <span class="ms-2 fs-3">📝</span>
         </div>
 
-        <!-- タスク一覧 -->
+        <!-- Task List -->
         <div class="card mb-4">
             <div class="card-header bg-white py-3">
                 <h2 class="h5 mb-0">Today's Tasks</h2>
@@ -36,7 +36,7 @@
             </ul>
         </div>
 
-        <!-- 自然文入力欄 -->
+        <!-- Instruction Input -->
         <div class="card">
             <div class="card-header bg-white py-3">
                 <h2 class="h5 mb-0">Command AI Assistant</h2>

@@ -22,4 +22,19 @@ class TaskController extends Controller
         // OpenAIに投げて処理（後で作る）
         return back()->with('message', 'AIにコマンドを送信しました！');
     }
+
+    public function create()
+    {
+        
+    }
+
+    public function edit()
+    {
+        
+    }
+
+    public function delete()
+    {
+        
+    }
 }

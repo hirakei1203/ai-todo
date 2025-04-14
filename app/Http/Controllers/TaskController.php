@@ -7,6 +7,8 @@ use App\Application\UseCases\Task\CreateTaskUseCase;
 use App\Application\UseCases\Task\EditTaskUseCase;
 use App\Application\UseCases\Task\DeleteTaskUseCase;
 use App\Infrastructure\Repositories\TaskRepository;
+use App\Http\Requests\CreateTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 
 class TaskController extends Controller
 {
@@ -54,13 +56,9 @@ class TaskController extends Controller
         return view('tasks.create');
     }
 
-    public function store(Request $request)
+    public function store(CreateTaskRequest $request)
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
-
-        $this->createTaskUseCase->execute($data);
+        $this->createTaskUseCase->execute($request->validated());
 
         return redirect()->route('tasks.index')->with('success', 'タスクが作成されました');
     }
@@ -82,14 +80,9 @@ class TaskController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateTaskRequest $request, $id)
     {
-        $data = $request->validate([
-            'name' => 'required|string|max:255',
-            'completed' => 'boolean',
-        ]);
-
-        $this->editTaskUseCase->execute($id, $data);
+        $this->editTaskUseCase->execute($id, $request->validated());
 
         return redirect()->route('tasks.index')->with('success', 'タスクが更新されました');
     }

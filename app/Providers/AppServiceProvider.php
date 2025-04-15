@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // リポジトリの依存性注入
+        // Register repositoryInterfaces
         $this->app->bind(TaskRepositoryInterface::class, TaskRepository::class);
     }
 
